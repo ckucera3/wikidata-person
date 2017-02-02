@@ -17,8 +17,8 @@ describe('#wdp', function() {
             JSON.stringify({
                 "name": "Charles V",
                 "description": "Holy Roman Emperor",
-                "birthdate": new Date("1500-01-01T06:01:01.001Z"),
-                "deathdate": new Date("1558-01-01T06:01:01.001Z")
+                "birthdate": new Date("1500-12-31T23:59:59.999Z"),
+                "deathdate": new Date("1558-12-31T23:59:59.999Z")
             }));
         });
     });

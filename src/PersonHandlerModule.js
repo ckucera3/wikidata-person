@@ -60,14 +60,15 @@ var PersonHandlerModule = (function() {
 		var birthdate = entity.claims["P569"];
 		if(birthdate && birthdate[0].mainsnak.datavalue) {
 			var dateString = birthdate[0].mainsnak.datavalue.value.time.substring(0, 5);
-
+			console.log(dateString)
 			var testDate = new Date();
-			testDate.setMonth(0);
-			testDate.setDate(1);
-			testDate.setHours(1);
-			testDate.setMinutes(1);
-			testDate.setSeconds(1);
-			testDate.setMilliseconds(1);
+			//testDate.setMonth(0);
+			testDate.setDate(0);
+			// testDate.setHours(1);
+			// testDate.setMinutes(1);
+			// testDate.setSeconds(1);
+			//testDate.setMilliseconds(1);
+			testDate.setTime(-1)
 			testDate.setYear((dateString));
 
 			return testDate;
@@ -83,13 +84,14 @@ var PersonHandlerModule = (function() {
 			var dateString = deathdate[0].mainsnak.datavalue.value.time.substring(0, 5);
 
 			var testDate = new Date();
-			testDate.setMonth(0);
-			testDate.setDate(1);
-			testDate.setHours(1);
-			testDate.setMinutes(1);
-			testDate.setSeconds(1);
-			testDate.setMilliseconds(1);
+			//testDate.setMonth(0);
+			testDate.setDate(0);
+			// testDate.setHours(1);
+			// testDate.setMinutes(1);
+			// testDate.setSeconds(1);
+			//testDate.setMilliseconds(1);
 
+			testDate.setTime(-1)
 			testDate.setYear((dateString));
 			return testDate;
 		}
