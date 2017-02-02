@@ -1,0 +1,30 @@
+{
+  "name": "wikidata-person",
+  "version": "0.0.1",
+  "description": "Node library for querying People using the Wikidata API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckucera3/wikidata-person.git"
+  },
+  "engines": {
+  "node": ">=4.2.4"
+  },
+  "keywords": [
+    "node",
+    "wikidata",
+    "api",
+    "wrapper",
+    "person",
+    "people"
+  ],
+  "author": "Clayton Kucera (http://www.ckucera.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ckucera3/wikidata-person/issues"
+  },
+  "homepage": "https://github.com/ckucera3/wikidata-person#readme"
+}
