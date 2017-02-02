@@ -2,7 +2,7 @@
   "name": "wikidata-person",
   "version": "0.0.1",
   "description": "Node library for querying People using the Wikidata API",
-  "main": "index.js",
+  "main": "src/wikidataPerson.js",
   "scripts": {
     "test": "mocha --reporter spec"
   },
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/ckucera3/wikidata-person.git"
   },
   "engines": {
-  "node": ">=4.2.4"
+    "node": ">=4.2.4"
   },
   "keywords": [
     "node",
@@ -26,5 +26,12 @@
   "bugs": {
     "url": "https://github.com/ckucera3/wikidata-person/issues"
   },
-  "homepage": "https://github.com/ckucera3/wikidata-person#readme"
+  "homepage": "https://github.com/ckucera3/wikidata-person#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "request": "^2.79.0"
+  }
 }
