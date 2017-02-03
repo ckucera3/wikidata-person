@@ -11,7 +11,11 @@ A JavaScript library for querying `People` using the Wikidata API.
 
 ## NPM
 
+`npm install wikidata-person`
+
 ## Yarn
+
+`yarn add wikidata-person`
 
 # Usage
 
