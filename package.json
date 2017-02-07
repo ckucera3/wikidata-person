@@ -1,6 +1,6 @@
 {
   "name": "wikidata-person",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Node library for querying People using the Wikidata API",
   "main": "src/wikidataPerson.js",
   "scripts": {
