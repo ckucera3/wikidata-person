@@ -13,19 +13,16 @@ var PersonHandlerModule = (function() {
 		lookUpPageId(title, function(id) {
 			if(id) {
 				lookUpEntity(id, function(entity) {
-					//console.log(entity);
 					entity = createPersonModelFromEntity(entity);
 					callback(entity);
 				});
-				
 			} else {
 				callback(undefined);
 			}
 		})
-	}
+	};
 
 	function createPersonModelFromEntity(entity) {
-		//console.log(entity.labels.en.value)
 		var personModel = {
 			name: entity.labels.en.value,
 			description: getDescription(entity),
@@ -36,7 +33,6 @@ var PersonHandlerModule = (function() {
 		if(!getIsHuman(entity) || !personModel.birthdate || !personModel.deathdate || !personModel.name) {
 			return undefined;
 		}
-		//console.log(personModel);
 		return personModel;
 	}
 
@@ -60,18 +56,8 @@ var PersonHandlerModule = (function() {
 		var birthdate = entity.claims["P569"];
 		if(birthdate && birthdate[0].mainsnak.datavalue) {
 			var dateString = birthdate[0].mainsnak.datavalue.value.time.substring(0, 5);
-			console.log(dateString)
-			var testDate = new Date();
-			//testDate.setMonth(0);
-			testDate.setDate(0);
-			// testDate.setHours(1);
-			// testDate.setMinutes(1);
-			// testDate.setSeconds(1);
-			//testDate.setMilliseconds(1);
-			testDate.setTime(-1)
-			testDate.setYear((dateString));
+			return dateString;
 
-			return testDate;
 		}
 
 		return undefined;
@@ -82,18 +68,8 @@ var PersonHandlerModule = (function() {
 		var deathdate = entity.claims["P570"];
 		if(deathdate && deathdate[0].mainsnak.datavalue) {
 			var dateString = deathdate[0].mainsnak.datavalue.value.time.substring(0, 5);
+			return dateString;
 
-			var testDate = new Date();
-			//testDate.setMonth(0);
-			testDate.setDate(0);
-			// testDate.setHours(1);
-			// testDate.setMinutes(1);
-			// testDate.setSeconds(1);
-			//testDate.setMilliseconds(1);
-
-			testDate.setTime(-1)
-			testDate.setYear((dateString));
-			return testDate;
 		}
 
 		return undefined;
@@ -124,7 +100,6 @@ var PersonHandlerModule = (function() {
 			  	}
 
 			} else {
-				console.log(err)
 				callback(undefined);
 			}
 
@@ -138,7 +113,6 @@ var PersonHandlerModule = (function() {
 			  	if(body) {
 					body = JSON.parse(body);
 					var ent = body.entities;
-					//console.log(body);
 					if(ent) {
 						callback(ent[id]);
 					} else {
@@ -147,7 +121,6 @@ var PersonHandlerModule = (function() {
 			  	}
 
 			} else {
-				console.log(err)
 				callback(undefined);
 			}
 
@@ -157,8 +130,6 @@ var PersonHandlerModule = (function() {
 	return {
 		init: init
 	}
-
-
 })();
 
 
