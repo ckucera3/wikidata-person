@@ -22,7 +22,7 @@ A JavaScript library for querying `People` using the Wikidata API.
 ## Get a Person from Wikipedia
 
 
-```
+```js
 
 var wdp = require('wikidata-person');
 
@@ -49,7 +49,7 @@ The above code will log:
 `require('wikidata-person').category(<category>)` takes in the name of a Wikipedia [Category](https://en.wikipedia.org/wiki/Help:Category) and returns a list of all people who belong to the `<category>` or its subcategories.
 
 
-```
+```js
 
 var wdp = require('wikidata-person');
 
