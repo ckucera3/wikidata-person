@@ -1,6 +1,6 @@
 Wikidata Person Querier
 ===
-
+[![NPM Version](https://img.shields.io/npm/v/wikidata-person.svg)](https://www.npmjs.com/package/wikidata-person)
 [![Build Status](https://travis-ci.org/ckucera3/wikidata-person.svg?branch=master)](https://travis-ci.org/ckucera3/wikidata-person)
 
 
