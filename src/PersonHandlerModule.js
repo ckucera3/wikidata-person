@@ -1,5 +1,4 @@
-var request = require('request');
-
+var axios = require('axios');
 
 var PersonHandlerModule = (function() {
 
@@ -94,15 +93,15 @@ var PersonHandlerModule = (function() {
 
 	function lookUpPageId(title, callback) {
 		var url = getWikidataPageUrl(title);
-		request(url, function(err, response, body) {
-		  	if (!err && response.statusCode == 200) {
+		axios.get(url).then(function(response) {
+			var body = response.data;
+		  	if (response.status == 200) {
 			  	if(body) {
-					body = JSON.parse(body);
-					if(body.query) {
-						callback(body.query.pages[Object.keys(body.query.pages)[0]].pageprops.wikibase_item);
-					} else {
-						callback(undefined);
-					}
+						if(body.query) {
+							callback(body.query.pages[Object.keys(body.query.pages)[0]].pageprops.wikibase_item);
+						} else {
+							callback(undefined);
+						}
 			  	}
 
 			} else {
@@ -114,10 +113,10 @@ var PersonHandlerModule = (function() {
 
 	function lookUpEntity(id, callback) {
 		var url = getWikidataEntityUrl(id);
-		request(url, function(err, response, body) {
-		  	if (!err && response.statusCode == 200) {
+		axios.get(url).then(function(response) {
+			var body = response.data;
+		  	if (response.status == 200) {
 			  	if(body) {
-					body = JSON.parse(body);
 					var ent = body.entities;
 					if(ent) {
 						callback(ent[id]);

@@ -1,4 +1,4 @@
-var request = require('request');
+var axios = require('axios');
 
 var CategoryHandlerModule = (function() {
 
@@ -65,11 +65,12 @@ var CategoryHandlerModule = (function() {
         var pages = [];
 
 
-        request(url, function(err, response, body) {
+        axios.get(url).then(function(response) {
 
-            if (!err && response.statusCode == 200) {
+            if (response.status == 200) {
+              var body = response.data;
                 if(body) {
-                    body = JSON.parse(body);
+                    //body = JSON.parse(body);
                     subcats = subcats.concat(body.query.categorymembers.filter(function(cm) {
                         return (cm.ns == 14);
                     }));
@@ -95,8 +96,8 @@ var CategoryHandlerModule = (function() {
     }
 
     function continueRequest(url, cont, callback, subcats, pages) {
-        request(url + "&cmcontinue=" + cont.cmcontinue, function(error, response, body) {
-            body = JSON.parse(body);
+        axios.get(url + "&cmcontinue=" + cont.cmcontinue).then(function(response) {
+            body = response.data;
 
             subcats = subcats.concat(body.query.categorymembers.filter(function(cm) {
                 return (cm.ns == 14);

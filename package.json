@@ -32,6 +32,6 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
-    "request": "^2.79.0"
+    "axios": "^0.15.3"
   }
 }
