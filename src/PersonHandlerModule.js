@@ -3,9 +3,7 @@ var request = require('request');
 
 var PersonHandlerModule = (function() {
 
-	var init;
-
-
+	var init, idInit;
 
 	init = function(title, callback) {
 		var model = {};
@@ -21,6 +19,14 @@ var PersonHandlerModule = (function() {
 			}
 		})
 	};
+
+	idInit = function(id, callback) {
+		lookUpEntity(id, function(entity) {
+			entity = createPersonModelFromEntity(entity);
+			callback(entity);
+		});
+	}
+
 
 	function createPersonModelFromEntity(entity) {
 		var personModel = {
@@ -39,14 +45,14 @@ var PersonHandlerModule = (function() {
 	function getIsHuman(entity) {
 		if(entity.claims["P31"]) {
 			return entity.claims["P31"][0].mainsnak.datavalue.value.id == "Q5";
-			
+
 		}
 		return false;
 	}
 
 	function getDescription(entity) {
 		if(entity.descriptions && entity.descriptions.en && entity.descriptions.en.value) {
-			
+
 			return entity.descriptions.en.value;
 		}
 		return undefined;
@@ -128,7 +134,8 @@ var PersonHandlerModule = (function() {
 	}
 
 	return {
-		init: init
+		init: init,
+		idInit: idInit
 	}
 })();
 

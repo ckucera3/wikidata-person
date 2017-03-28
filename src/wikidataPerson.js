@@ -8,6 +8,10 @@ function queryWikidataPerson (name, callback) {
 	people.init(name, callback);
 }
 
+function queryWikidataPersonById(id, callback) {
+	people.idInit(id, callback);
+}
+
 function queryWikidataCategory (name, callback) {
 
 	category.init(name, function(model) {
@@ -39,6 +43,6 @@ function queryWikidataCategory (name, callback) {
 
 module.exports = {
 	person: queryWikidataPerson,
+	personById: queryWikidataPersonById,
 	category: queryWikidataCategory
 };
-
