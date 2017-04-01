@@ -39,7 +39,8 @@ The above code will log:
             name:"Mahatma Gandhi",
             description:"pre-eminent leader of Indian nationalism during British-ruled India",
             birthdate: 1869,
-            deathdate: 1948
+            deathdate: 1948,
+            imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/d1/Portrait_Gandhi.jpg"
         }
 ```
 
@@ -67,13 +68,16 @@ The above code will log:
                 name: 'Avidius Cassius',
                 description: 'Roman consul',
                 birthdate: '+0130',
-                deathdate: '+0175'
+                deathdate: '+0175',
+                imageUrl: ''
+
             },
             {
                 name: 'Clodius Albinus',
                 description: 'Roman usurper proclaimed emperor by the legions in Britain and Hispania',
                 birthdate: '+0150',
-                deathdate: '+0197'
+                deathdate: '+0197',
+                imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Clodius01_pushkin.jpg'
             }
         ]
 ```
