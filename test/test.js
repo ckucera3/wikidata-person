@@ -20,7 +20,8 @@ describe('wdp', function() {
                         "name": "Charles V",
                         "description": "Holy Roman Emperor",
                         "birthdate": "+1500",
-                        "deathdate": "+1558"
+                        "deathdate": "+1558",
+                        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Titian_-_Portrait_of_Charles_V_Seated_-_WGA22964.jpg"
                     }));
             });
         });
@@ -55,13 +56,16 @@ describe('wdp', function() {
                             name: 'Avidius Cassius',
                             description: 'Roman consul',
                             birthdate: '+0130',
-                            deathdate: '+0175'
+                            deathdate: '+0175',
+                            imageUrl: ""
                         },
                         {
                             name: 'Clodius Albinus',
                             description: 'Roman usurper proclaimed emperor by the legions in Britain and Hispania',
                             birthdate: '+0150',
-                            deathdate: '+0197'
+                            deathdate: '+0197',
+                            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Clodius01_pushkin.jpg"
+
                         }
                         ]
                     ));
