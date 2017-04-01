@@ -10,8 +10,17 @@ var PersonHandlerModule = (function() {
 		lookUpPageId(title, function(id) {
 			if(id) {
 				lookUpEntity(id, function(entity) {
-					entity = createPersonModelFromEntity(entity);
-					callback(entity);
+
+					person = createPersonModelFromEntity(entity);
+					getImageUrlPromise(entity).then(function(response) {
+						person.imageUrl = response;
+						callback(person);
+					}).catch(function(error) {
+						if(person) {
+							person.imageUrl = "";
+						}
+						callback(person);
+					})
 				});
 			} else {
 				callback(undefined);
@@ -21,8 +30,16 @@ var PersonHandlerModule = (function() {
 
 	idInit = function(id, callback) {
 		lookUpEntity(id, function(entity) {
-			entity = createPersonModelFromEntity(entity);
-			callback(entity);
+			person = createPersonModelFromEntity(entity);
+			getImageUrlPromise(entity).then(function(response) {
+				person.imageUrl = response;
+				callback(person);
+			}).catch(function(error) {
+				if(person) {
+					person.imageUrl = "";
+				}
+				callback(person);
+			})
 		});
 	}
 
@@ -35,10 +52,12 @@ var PersonHandlerModule = (function() {
 			deathdate: getDeathdate(entity)
 		};
 
-		if(!getIsHuman(entity) || !personModel.birthdate || !personModel.deathdate || !personModel.name) {
+		if(!getIsHuman(entity)) {
 			return undefined;
 		}
+
 		return personModel;
+
 	}
 
 	function getIsHuman(entity) {
@@ -79,6 +98,24 @@ var PersonHandlerModule = (function() {
 
 		return undefined;
 
+	}
+
+	function getImageUrlPromise(entity) {
+		return new Promise(function(resolve, reject) {
+			var imageName = entity.claims["P18"];
+			if(imageName && imageName[0].mainsnak.datavalue) {
+				var imageName = imageName[0].mainsnak.datavalue.value;
+					axios.get('https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url&titles=File:' + imageName)
+					.then(function(response) {
+						resolve(response.data.query.pages[Object.keys(response.data.query.pages)[0]].imageinfo[0].url);
+					}).catch(function(error) {
+						reject(error);
+					})
+				} else {
+					reject('No image.')
+				}
+
+		})
 	}
 
 
