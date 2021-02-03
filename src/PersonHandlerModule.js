@@ -49,7 +49,10 @@ var PersonHandlerModule = (function() {
 			name: entity.labels.en.value,
 			description: getDescription(entity),
 			birthdate: getBirthdate(entity),
-			deathdate: getDeathdate(entity)
+			deathdate: getDeathdate(entity),
+			twitter: getTwitterUsername(entity),
+			facebook: getFacebookUsername(entity),
+			youtube: getYoutubeUsername(entity)
 		};
 
 		if(!getIsHuman(entity)) {
@@ -100,12 +103,33 @@ var PersonHandlerModule = (function() {
 
 	}
 
+	function getTwitterUsername(entity) {
+	  return _getSocialUsername(entity, "P2002");
+	}
+
+	function getFacebookUsername(entity) {
+		return _getSocialUsername(entity, "P2013");
+	}
+
+	function getYoutubeUsername(entity) {
+		return _getSocialUsername(entity, "P2397");
+	}
+
+	function _getSocialUsername(entity, claimId) {
+		var socialUsername = entity.claims[claimId];
+		if (socialUsername && socialUsername[0].mainsnak.datavalue) {
+			return socialUsername[0].mainsnak.datavalue.value;
+		}
+		return undefined;
+	}
+
 	function getImageUrlPromise(entity) {
 		return new Promise(function(resolve, reject) {
 			var imageName = entity.claims["P18"];
 			if(imageName && imageName[0].mainsnak.datavalue) {
 				var imageName = imageName[0].mainsnak.datavalue.value;
-					axios.get('https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url&titles=File:' + imageName)
+				var url = encodeURI('https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url&titles=File:' + imageName)
+					axios.get(url)
 					.then(function(response) {
 						resolve(response.data.query.pages[Object.keys(response.data.query.pages)[0]].imageinfo[0].url);
 					}).catch(function(error) {
